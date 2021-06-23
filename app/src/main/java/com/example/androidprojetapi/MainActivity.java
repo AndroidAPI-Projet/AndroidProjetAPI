@@ -6,26 +6,38 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageView imageAerosoft, imageMusicoshop;
+    TextView textViewAerosoft,textViewMusicoshop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        imageAerosoft = (ImageView) findViewById(R.id.imageAerosoft);
-        imageMusicoshop = (ImageView) findViewById(R.id.imageMusicoshop);
+        textViewAerosoft = (TextView) findViewById(R.id.textViewAerosoft);
+        textViewMusicoshop = (TextView) findViewById(R.id.textViewMusicoshop);
 
-        imageAerosoft.setOnClickListener(new View.OnClickListener(){
+        textViewAerosoft.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
 
                 Intent intent = new Intent(getApplicationContext(), LoginAerosoft.class);
+                startActivity(intent);
+            }
+
+        });
+
+        textViewMusicoshop.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(), LoginMusicoshop.class);
                 startActivity(intent);
             }
 
