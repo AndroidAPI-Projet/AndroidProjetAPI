@@ -38,7 +38,7 @@
         android:layout_below="@id/lblUsernameMusicoshop"
         android:layout_marginTop="-2dp"
         android:layout_marginBottom="8dip"
-        android:textSize="12sp" />
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/lblPasswordMusicoshop"
@@ -56,10 +56,11 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/lblPasswordMusicoshop"
+
         android:layout_marginTop="2dp"
         android:layout_marginBottom="8dip"
         android:password="true"
-        android:textSize="12sp" />
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/btnLoginMusicoshop"
