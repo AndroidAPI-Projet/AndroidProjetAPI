@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="10dip">
+
+    <TextView
+        android:id="@+id/lblTitreAerosoft"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:text="Login Aerosoft"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dip"
+
+        />
+
+    <TextView
+        android:id="@+id/lblNameAerosoft"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lblTitreAerosoft"
+        android:layout_margin="10dp"
+        android:layout_marginTop="40dp"
+
+        android:layout_marginBottom="8dip"
+        android:text="Prénom :"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/txtNameAerosoft"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lblNameAerosoft"
+        android:layout_marginTop="-2dp"
+        android:layout_marginBottom="8dip"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/lblLastnameAerosoft"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtNameAerosoft"
+        android:layout_margin="10dp"
+        android:layout_marginTop="40dp"
+
+        android:layout_marginBottom="8dip"
+        android:text="Nom:"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/txtLastnameAerosoft"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lblLastnameAerosoft"
+        android:layout_marginTop="-2dp"
+        android:layout_marginBottom="8dip"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/lblUsernameAerosoft"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtLastnameAerosoft"
+        android:layout_margin="10dp"
+        android:layout_marginTop="40dp"
+
+        android:layout_marginBottom="8dip"
+        android:text="Nom d'utilisateur:"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/txtUsernameAerosoft"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lblUsernameAerosoft"
+        android:layout_marginTop="-2dp"
+        android:layout_marginBottom="8dip"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/lblPasswordAerosoft"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtUsernameAerosoft"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="8dip"
+        android:text="Mot de passe:"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/txtPasswordAerosoft"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lblPasswordAerosoft"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="8dip"
+        android:password="true"
+        android:textSize="12sp" />
+
+    <Button
+        android:id="@+id/btnConfirmRegisterAerosoft"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtPasswordAerosoft"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="2dip"
+        android:text="Confirmer son profil" />
+
+    <Button
+        android:id="@+id/btnLinkLoginAerosoft"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnConfirmRegisterAerosoft"
+        android:layout_marginTop="5dp"
+        android:text="Revenir à la connexion" />
+
+</RelativeLayout>
