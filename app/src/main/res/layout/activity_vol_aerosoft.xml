@@ -7,7 +7,7 @@
     android:padding="10dip"
     android:orientation="vertical">
 
-    <TextView
+    <Button
         android:id="@+id/titleAerosoft"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -165,9 +165,10 @@
 
     <ListView
         android:id="@+id/listViewVol"
-        android:background="#FAFAFA"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/logoutButton" />
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:divider="#f00"
+        android:dividerHeight="1dp"
+        android:listSelector="#0f0"/>
 
 </LinearLayout>

@@ -2,7 +2,10 @@ package com.example.androidprojetapi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -38,8 +41,18 @@ public class VolAerosoft extends AppCompatActivity {
         volsList = new ArrayList<>();
 
         listView = (ListView) findViewById(R.id.listViewVol);
+        Button b1;
+        b1 = findViewById(R.id.titleAerosoft);
 
         extractVols();
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent i = new Intent(getApplicationContext(),HomeAerosoft.class);
+                startActivity(i);
+            }
+        });
     }
 
     private void extractVols() {
