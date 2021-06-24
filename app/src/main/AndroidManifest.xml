@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidProjetAPI">
-        <activity android:name=".RegisterAerosoft"></activity>
+        <activity android:name=".HomeAerosoft"></activity>
+        <activity android:name=".RegisterAerosoft" />
         <activity android:name=".LoginMusicoshop" />
         <activity android:name=".LoginAerosoft" />
         <activity android:name=".MainActivity">
