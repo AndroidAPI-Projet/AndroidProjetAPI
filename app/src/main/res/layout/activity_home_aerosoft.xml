@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="10dip" >
+
+    <TextView
+        android:id="@+id/titleAerosoft"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#EEE"
+        android:text="Aerosoft"
+        android:gravity="center"
+        android:textColor="#000"
+        android:textSize="25sp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:layout_marginBottom="15dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/logoutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_marginBottom="25dp"
+        android:layout_below="@+id/titleAerosoft"
+        android:text="Déconnexion" />
+
+    <Button
+        android:id="@+id/piloteButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_border"
+        android:padding="10dp"
+        android:textAllCaps="false"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textColor="#000"
+        android:textSize="20dp"
+        android:layout_marginBottom="25dp"
+        android:layout_below="@+id/logoutButton"
+        android:text="Pilotes" />
+
+    <Button
+        android:id="@+id/volButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_border"
+        android:padding="10dp"
+        android:textAllCaps="false"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textColor="#000"
+        android:textSize="20dp"
+        android:layout_marginBottom="25dp"
+        android:layout_below="@+id/piloteButton"
+        android:text="Vols" />
+
+    <Button
+        android:id="@+id/avionButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_border"
+        android:padding="10dp"
+        android:textAllCaps="false"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textColor="#000"
+        android:textSize="20dp"
+        android:layout_marginBottom="25dp"
+        android:layout_below="@+id/volButton"
+        android:text="Avions" />
+
+    <Button
+        android:id="@+id/affectationButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_border"
+        android:padding="10dp"
+        android:textAllCaps="false"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textColor="#000"
+        android:textSize="20dp"
+        android:layout_marginBottom="25dp"
+        android:layout_below="@+id/avionButton"
+        android:text="Affectations" />
+
+    <ImageView
+        android:id="@+id/imageAerosoft"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/affectationButton"
+        android:src="@drawable/aerosoft" />
+
+</RelativeLayout>

@@ -46,6 +46,7 @@
         android:layout_below="@id/txtUsernameAerosoft"
         android:layout_marginTop="40dp"
         android:layout_marginBottom="8dip"
+        android:layout_margin="10dp"
         android:text="Mot de passe:"
         android:textSize="20sp"
         android:textStyle="bold" />

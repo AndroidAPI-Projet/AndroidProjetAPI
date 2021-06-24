@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class LoginAerosoft extends AppCompatActivity {
 
-    Button btnRegisterAerosoft;
+    Button btnRegisterAerosoft, btnLoginAerosoft;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +17,7 @@ public class LoginAerosoft extends AppCompatActivity {
         setContentView(R.layout.activity_login_aerosoft);
 
         btnRegisterAerosoft = (Button) findViewById(R.id.btnRegisterAerosoft);
+        btnLoginAerosoft = (Button) findViewById(R.id.btnLoginAerosoft);
 
         btnRegisterAerosoft.setOnClickListener(new View.OnClickListener(){
 
@@ -24,6 +25,17 @@ public class LoginAerosoft extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(getApplicationContext(), RegisterAerosoft.class);
+                startActivity(intent);
+            }
+
+        });
+
+        btnLoginAerosoft.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(), HomeAerosoft.class);
                 startActivity(intent);
             }
 
