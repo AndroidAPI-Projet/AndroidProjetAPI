@@ -2,11 +2,13 @@ package com.example.androidprojetapi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,24 +24,27 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class LoginMusicoshop extends AppCompatActivity {
 
-    TextView txtUsernameMusicoshop, txtPasswordMusicoshop;
+    EditText txtUsernameMusicoshop, txtPasswordMusicoshop;
 
     Button btnLoginMusicoshop,btnRegisterMusicoshop;
 
     Utilisateur user;
+
+    byte[] input, output;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_musicoshop);
 
-        txtUsernameMusicoshop = (TextView) findViewById(R.id.txtUsernameMusicoshop);
-        txtPasswordMusicoshop = (TextView) findViewById(R.id.txtPasswordMusicoshop);
+        txtUsernameMusicoshop = (EditText) findViewById(R.id.txtUsernameMusicoshop);
+        txtPasswordMusicoshop = (EditText) findViewById(R.id.txtPasswordMusicoshop);
 
         btnLoginMusicoshop = (Button) findViewById(R.id.btnLoginMusicoshop);
         btnRegisterMusicoshop = (Button) findViewById(R.id.btnRegisterMusicoshop);
@@ -51,12 +56,12 @@ public class LoginMusicoshop extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getApplicationContext(), "btn conexion", Toast.LENGTH_SHORT).show();
+                user.setEmail((String) txtUsernameMusicoshop.getText().toString());
+                user.setPassword((String) txtPasswordMusicoshop.getText().toString());
+                Log.e("user.setEmail", user.getEmail());
+                Log.e("user.setPassword", user.getPassword());
 
-                /*user.setEmail((String) txtUsernameMusicoshop.getText());
-                user.setPassword((String) txtPasswordMusicoshop.getText());
-                Log.e("user.setEmail : ", user.getEmail());
-                Log.e("user.setPassword : ", user.getPassword());
+                Toast.makeText(getApplicationContext(), "btn conexion", Toast.LENGTH_SHORT).show();
 
                 login(user);
 
@@ -67,26 +72,24 @@ public class LoginMusicoshop extends AppCompatActivity {
         });
 
     }
+    @SuppressLint("NewApi")
     private void login(Utilisateur user){
 
-        MessageDigest digest=null;
+        MessageDigest sha256=null;
         String password = "";
 
         try {
-            digest = MessageDigest.getInstance("SHA-256");
+            sha256 = MessageDigest.getInstance("SHA-256");
+
         } catch (NoSuchAlgorithmException e1) {
             e1.printStackTrace();
         }
-        digest.reset();
-        try {
-            password = digest.digest(user.getPassword().getBytes("UTF-8")).toString();
-            Log.e("password : ", password);
-        } catch (UnsupportedEncodingException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        sha256.reset();
 
-        String uri = String.format("http://192.168.1.18/Musicoshop/login.php?param1=%1$s&param2=%2$s",
+        output = sha256.digest(user.getPassword().getBytes(StandardCharsets.UTF_8));
+        password = bytesToHex(output);
+
+        String uri = String.format("http://192.168.56.1:8080/Musicoshop/login.php?param1=%1$s&param2=%2$s",
                 user.getEmail(),password);
 
         Log.e("uri : ", uri);
@@ -121,6 +124,18 @@ public class LoginMusicoshop extends AppCompatActivity {
         //adding the string request to request queue
         requestQueue.add(stringRequest);
 
+    }
+
+    private static String bytesToHex(byte[] hash) {
+        StringBuilder hexString = new StringBuilder(2 * hash.length);
+        for (int i = 0; i < hash.length; i++) {
+            String hex = Integer.toHexString(0xff & hash[i]);
+            if(hex.length() == 1) {
+                hexString.append('0');
+            }
+            hexString.append(hex);
+        }
+        return hexString.toString();
     }
 
 }
