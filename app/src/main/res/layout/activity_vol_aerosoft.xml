@@ -165,10 +165,9 @@
 
     <ListView
         android:id="@+id/listViewVol"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:divider="#f00"
-        android:dividerHeight="1dp"
-        android:listSelector="#0f0"/>
+        android:background="#FAFAFA"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/logoutButton" />
 
 </LinearLayout>
