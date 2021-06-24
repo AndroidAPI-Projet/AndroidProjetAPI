@@ -31,7 +31,7 @@ public class PiloteAerosoft extends AppCompatActivity {
 
     ArrayList<HashMap<String, String>> pilotesList;
 
-    private static String API_URL="http://10.75.25.182:8080/apache/AerosoftAPI/pilote";
+    private static String API_URL="http://10.75.25.32:8080/AerosoftAPI/pilote";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -27,6 +28,8 @@ import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginMusicoshop extends AppCompatActivity {
 
@@ -37,6 +40,10 @@ public class LoginMusicoshop extends AppCompatActivity {
     Utilisateur user;
 
     byte[] input, output;
+
+    private static String API_URL="http://10.75.25.32:8080/MusicoshopAPI/api/utilisateur/login2.php?";
+
+    private SessionManager session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,10 +65,7 @@ public class LoginMusicoshop extends AppCompatActivity {
 
                 user.setEmail((String) txtUsernameMusicoshop.getText().toString());
                 user.setPassword((String) txtPasswordMusicoshop.getText().toString());
-                Log.e("user.setEmail", user.getEmail());
-                Log.e("user.setPassword", user.getPassword());
-
-                Toast.makeText(getApplicationContext(), "btn conexion", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "btn conexion", Toast.LENGTH_SHORT).show();
 
                 login(user);
 
@@ -76,6 +80,7 @@ public class LoginMusicoshop extends AppCompatActivity {
     private void login(Utilisateur user){
 
         MessageDigest sha256=null;
+
         String password = "";
 
         try {
@@ -84,26 +89,52 @@ public class LoginMusicoshop extends AppCompatActivity {
         } catch (NoSuchAlgorithmException e1) {
             e1.printStackTrace();
         }
+
         sha256.reset();
 
         output = sha256.digest(user.getPassword().getBytes(StandardCharsets.UTF_8));
         password = bytesToHex(output);
 
-        String uri = String.format("http://192.168.56.1:8080/Musicoshop/login.php?param1=%1$s&param2=%2$s",
-                user.getEmail(),password);
+        String uri = API_URL + "email=" + user.getEmail() + "&password=" + password;
 
         Log.e("uri : ", uri);
 
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, uri,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, uri,
                 new Response.Listener<String>() {
+
                     @Override
                     public void onResponse(String response) {
-
+                        Log.d("Login Response: ", "Login Response: " + response.toString());
                         try {
                             JSONObject obj = new JSONObject(response);
+
+                            JSONArray piloteArray = obj.getJSONArray("UserLogged");
+
+                            for (int i = 0; i < piloteArray.length(); i++) {
+                                JSONObject userLoggedObject = piloteArray.getJSONObject(i);
+
+                                user.setIdUtilisateur(userLoggedObject.getString("idUtilisateur"));
+                                user.setUserName(userLoggedObject.getString("userName"));
+                                user.setEmail(userLoggedObject.getString("email"));
+                                user.setType(userLoggedObject.getString("type"));
+                                user.setPassword(userLoggedObject.getString("password"));
+                                user.setValideuser(userLoggedObject.getString("valideuser"));
+                                user.setChangepwd(userLoggedObject.getString("changepwd"));
+                                user.setSexe(userLoggedObject.getString("sexe"));
+                                user.setNom(userLoggedObject.getString("nom"));
+                                user.setPrenom(userLoggedObject.getString("prenom"));
+                                user.setTel(userLoggedObject.getString("tel"));
+                                user.setAdresse(userLoggedObject.getString("adresse"));
+                                user.setVille(userLoggedObject.getString("ville"));
+                                user.setCodePostal(userLoggedObject.getString("codePostal"));
+
+                                session = new SessionManager(LoginMusicoshop.this);
+                                session.setKey("idUtilisateur",user.getIdUtilisateur());
+
+                            }
+
                             Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
-                            Log.e("response : ", response);
+                            Log.e("idUtilisateur", user.getIdUtilisateur());
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -123,8 +154,7 @@ public class LoginMusicoshop extends AppCompatActivity {
 
         //adding the string request to request queue
         requestQueue.add(stringRequest);
-
-    }
+    };
 
     private static String bytesToHex(byte[] hash) {
         StringBuilder hexString = new StringBuilder(2 * hash.length);

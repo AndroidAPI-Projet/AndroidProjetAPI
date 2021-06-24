@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(getApplicationContext(), LoginAerosoft.class);
+                Intent intent = new Intent(getApplicationContext(), PiloteAerosoft.class);
                 startActivity(intent);
             }
 
