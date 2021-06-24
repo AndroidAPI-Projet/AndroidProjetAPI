@@ -3,18 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:weightSum="4">
+    android:weightSum="3">
 
     <TextView
-        android:id="@+id/NumVol"
+        android:id="@+id/IdAffectation"
         android:layout_width="1dp"
         android:layout_height="1dp"
-        android:visibility="invisible"
-        android:textStyle="bold" />
+        android:visibility="invisible" />
 
     <TextView
-        android:id="@+id/AeroportDept"
-        android:layout_width="12dip"
+        android:id="@+id/NumVolAffect"
+        android:layout_width="2dip"
         android:layout_height="wrap_content"
         android:paddingBottom="10dip"
         android:paddingTop="10dip"
@@ -24,8 +23,8 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/HDepart"
-        android:layout_width="8dip"
+        android:id="@+id/DateVolAffect"
+        android:layout_width="2dip"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textAlignment="center"
@@ -33,22 +32,12 @@
         android:paddingTop="10dip" />
 
     <TextView
-        android:id="@+id/AeroportArr"
-        android:layout_width="12dip"
+        android:id="@+id/NumAvionAffect"
+        android:layout_width="2dip"
         android:layout_height="wrap_content"
-        android:textColor="#5d5d5d"
         android:layout_weight="1"
-        android:paddingBottom="10dip"
-        android:paddingTop="10dip"
         android:textAlignment="center"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/HArrivee"
-        android:layout_width="8dip"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:paddingBottom="10dip"
-        android:paddingTop="10dip"
-        android:textAlignment="center" />
+        android:paddingTop="10dip" />
+
 </LinearLayout>
