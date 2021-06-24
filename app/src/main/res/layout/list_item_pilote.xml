@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:weightSum="3">
+
+    <TextView
+        android:id="@+id/IdPilote"
+        android:layout_width="2dip"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/NomPilote"
+        android:layout_width="35dip"
+        android:layout_height="wrap_content"
+        android:paddingLeft="35dip"
+        android:paddingBottom="10dip"
+        android:paddingTop="10dip"
+        android:layout_weight="1"
+        android:textSize="16sp"
+        android:textAlignment="textStart"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/PrenomPilote"
+        android:layout_width="20dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textAlignment="textStart"
+        android:paddingBottom="10dip"
+        android:paddingTop="10dip"
+        android:paddingLeft="35dip" />
+
+    <TextView
+        android:id="@+id/Matricule"
+        android:layout_width="10dip"
+        android:layout_height="wrap_content"
+        android:textColor="#5d5d5d"
+        android:layout_weight="1"
+        android:paddingBottom="10dip"
+        android:paddingTop="10dip"
+        android:textAlignment="center"
+        android:textStyle="bold" />
+</LinearLayout>
