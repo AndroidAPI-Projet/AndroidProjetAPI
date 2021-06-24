@@ -42,6 +42,17 @@ public class HomeAerosoft extends AppCompatActivity {
             }
 
         });
+
+        avionButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(), AvionAerosoft.class);
+                startActivity(intent);
+            }
+
+        });
     }
 
 }

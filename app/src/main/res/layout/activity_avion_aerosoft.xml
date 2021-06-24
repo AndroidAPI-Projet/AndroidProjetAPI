@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    android:id="@+id/LinearVolAerosoft"
+    android:id="@+id/LinearAvionAerosoft"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -39,7 +39,7 @@
         android:orientation="horizontal"
         android:paddingRight="10dip"
         android:paddingLeft="10dip"
-        android:layout_below="@+id/LinearVolAerosoft">
+        android:layout_below="@+id/LinearAvionAerosoft">
 
         <Button
             android:id="@+id/piloteButton"
@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/piloteButton"
             android:layout_marginBottom="25dp"
-            android:background="@drawable/button_border_active"
+            android:background="@drawable/button_border"
             android:padding="10dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
@@ -77,7 +77,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/volButton"
             android:layout_marginBottom="25dp"
-            android:background="@drawable/button_border"
+            android:background="@drawable/button_border_active"
             android:padding="10dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
@@ -109,14 +109,13 @@
         android:orientation="horizontal"
         android:paddingBottom="12dp"
         android:paddingTop="12dp"
-        android:divider="?android:dividerHorizontal"
-        android:weightSum="4">
+        android:weightSum="2">
 
         <TextView
-            android:id="@+id/HeaderDeptAerosoft"
+            android:id="@+id/HeaderTypeAvAerosoft"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Aeroport de départ"
+            android:text="Type d'avion"
             android:textAlignment="center"
             android:textColor="#000"
             android:textSize="16sp"
@@ -124,32 +123,10 @@
             android:layout_weight="1" />
 
         <TextView
-            android:id="@+id/HeaderHDeptAerosoft"
+            android:id="@+id/HeaderBaseAéroAerosoft"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Heure d'arrivée"
-            android:textAlignment="center"
-            android:textColor="#000"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_weight="1" />
-
-        <TextView
-            android:id="@+id/HeaderArrAerosoft"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Aéropport d'arrivée"
-            android:textAlignment="center"
-            android:textColor="#000"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_weight="1" />
-
-        <TextView
-            android:id="@+id/HeaderHArrAerosoft"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Heure d'arrivée"
+            android:text="Base de l'aéroport"
             android:textAlignment="center"
             android:textColor="#000"
             android:textSize="16sp"
@@ -164,7 +141,7 @@
         android:background="@android:color/darker_gray"/>
 
     <ListView
-        android:id="@+id/listViewVol"
+        android:id="@+id/listViewAvion"
         android:background="#FAFAFA"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
