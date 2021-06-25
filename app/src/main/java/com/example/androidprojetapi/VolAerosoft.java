@@ -4,14 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -34,7 +31,7 @@ public class VolAerosoft extends AppCompatActivity {
 
     ArrayList<HashMap<String, String>> volsList;
 
-    private static String API_URL="http://192.168.1.42/apache/AerosoftAPI/vol";
+    private String API_URL="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +39,8 @@ public class VolAerosoft extends AppCompatActivity {
         setContentView(R.layout.activity_vol_aerosoft);
 
         volsList = new ArrayList<>();
+
+        API_URL="http://"+ getString(R.string.IP_Machine)+"/AerosoftAPI/vol";
 
         listView = (ListView) findViewById(R.id.listViewVol);
 

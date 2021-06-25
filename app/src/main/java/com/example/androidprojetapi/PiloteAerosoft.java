@@ -31,7 +31,7 @@ public class PiloteAerosoft extends AppCompatActivity {
 
     ArrayList<HashMap<String, String>> pilotesList;
 
-    private static String API_URL="http://192.168.1.42/apache/AerosoftAPI/pilote";
+    private String API_URL="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,8 @@ public class PiloteAerosoft extends AppCompatActivity {
         setContentView(R.layout.activity_pilote_aerosoft);
 
         pilotesList = new ArrayList<>();
+
+        API_URL="http://"+ getString(R.string.IP_Machine)+"/AerosoftAPI/pilote";
 
         listView = (ListView) findViewById(R.id.listViewPilote);
 

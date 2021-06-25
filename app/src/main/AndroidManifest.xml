@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidProjetAPI"
         android:usesCleartextTraffic="true">
-        <activity android:name=".SingleVolAerosoft"></activity>
+        <activity android:name=".HomeMusicoshop"></activity>
         <activity android:name=".AffectationAerosoft" />
         <activity android:name=".AvionAerosoft" />
         <activity android:name=".VolAerosoft" />
