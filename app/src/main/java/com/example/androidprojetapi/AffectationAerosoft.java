@@ -31,7 +31,7 @@ public class AffectationAerosoft extends AppCompatActivity {
 
     ArrayList<HashMap<String, String>> affectationsList;
 
-    private static String API_URL="http://10.75.25.182:8080/apache/AerosoftAPI/affectation";
+    private static String API_URL="http://192.168.1.42/apache/AerosoftAPI/affectation";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

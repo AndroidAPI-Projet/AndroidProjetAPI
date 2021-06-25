@@ -31,7 +31,7 @@ public class VolAerosoft extends AppCompatActivity {
 
     ArrayList<HashMap<String, String>> volsList;
 
-    private static String API_URL="http://10.75.25.182:8080/apache/AerosoftAPI/vol";
+    private static String API_URL="http://192.168.1.42/apache/AerosoftAPI/vol";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
