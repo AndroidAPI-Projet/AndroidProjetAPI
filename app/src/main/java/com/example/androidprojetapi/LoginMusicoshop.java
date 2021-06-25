@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -41,7 +42,9 @@ public class LoginMusicoshop extends AppCompatActivity {
 
     byte[] input, output;
 
-    private static String API_URL="http://10.75.25.32:8080/MusicoshopAPI/api/utilisateur/login2.php?";
+    protected Resources resources;
+
+    private String API_URL="";
 
     private SessionManager session;
 
@@ -58,6 +61,8 @@ public class LoginMusicoshop extends AppCompatActivity {
 
         user = new Utilisateur();
 
+        API_URL="http://"+ getString(R.string.IP_Machine)+"/MusicoshopAPI/api/utilisateur/login2.php?";
+
         btnLoginMusicoshop.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -68,9 +73,6 @@ public class LoginMusicoshop extends AppCompatActivity {
                 //Toast.makeText(getApplicationContext(), "btn conexion", Toast.LENGTH_SHORT).show();
 
                 login(user);
-
-                /*Intent intent = new Intent(getApplicationContext(), LoginMusicoshop.class);
-                startActivity(intent);*/
             }
 
         });
@@ -97,7 +99,7 @@ public class LoginMusicoshop extends AppCompatActivity {
 
         String uri = API_URL + "email=" + user.getEmail() + "&password=" + password;
 
-        Log.e("uri : ", uri);
+        Log.d("uri : ", uri);
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, uri,
                 new Response.Listener<String>() {
@@ -108,33 +110,37 @@ public class LoginMusicoshop extends AppCompatActivity {
                         try {
                             JSONObject obj = new JSONObject(response);
 
-                            JSONArray piloteArray = obj.getJSONArray("UserLogged");
+                            if(!obj.getString("idUtilisateur").isEmpty()) {
 
-                            for (int i = 0; i < piloteArray.length(); i++) {
-                                JSONObject userLoggedObject = piloteArray.getJSONObject(i);
+                                Log.e("JSONObject(response)", String.valueOf(obj));
 
-                                user.setIdUtilisateur(userLoggedObject.getString("idUtilisateur"));
-                                user.setUserName(userLoggedObject.getString("userName"));
-                                user.setEmail(userLoggedObject.getString("email"));
-                                user.setType(userLoggedObject.getString("type"));
-                                user.setPassword(userLoggedObject.getString("password"));
-                                user.setValideuser(userLoggedObject.getString("valideuser"));
-                                user.setChangepwd(userLoggedObject.getString("changepwd"));
-                                user.setSexe(userLoggedObject.getString("sexe"));
-                                user.setNom(userLoggedObject.getString("nom"));
-                                user.setPrenom(userLoggedObject.getString("prenom"));
-                                user.setTel(userLoggedObject.getString("tel"));
-                                user.setAdresse(userLoggedObject.getString("adresse"));
-                                user.setVille(userLoggedObject.getString("ville"));
-                                user.setCodePostal(userLoggedObject.getString("codePostal"));
+                                user.setIdUtilisateur(obj.getString("idUtilisateur"));
+                                user.setUserName(obj.getString("userName"));
+                                user.setEmail(obj.getString("email"));
+                                user.setType(obj.getString("type"));
+                                user.setPassword(obj.getString("password"));
+                                user.setValideuser(obj.getString("valideuser"));
+                                user.setChangepwd(obj.getString("changepwd"));
+                                user.setSexe(obj.getString("sexe"));
+                                user.setNom(obj.getString("nom"));
+                                user.setPrenom(obj.getString("prenom"));
+                                user.setTel(obj.getString("tel"));
+                                user.setAdresse(obj.getString("adresse"));
+                                user.setVille(obj.getString("ville"));
+                                user.setCodePostal(obj.getString("codePostal"));
 
                                 session = new SessionManager(LoginMusicoshop.this);
-                                session.setKey("idUtilisateur",user.getIdUtilisateur());
+                                session.setKey("idUtilisateur", user.getIdUtilisateur());
 
+
+                                finish();
+                                Intent intent = new Intent(getApplicationContext(), HomeMusicoshop.class);
+                                startActivity(intent);
+
+                            }else{
+                                Toast.makeText(getApplicationContext(), "Mot de passe ou login erroné", Toast.LENGTH_SHORT).show();
+                                Log.e("idUtilisateur", "Mot de passe ou login erroné");
                             }
-
-                            Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
-                            Log.e("idUtilisateur", user.getIdUtilisateur());
 
                         } catch (JSONException e) {
                             e.printStackTrace();

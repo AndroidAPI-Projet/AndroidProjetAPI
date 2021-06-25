@@ -31,7 +31,7 @@ public class PiloteAerosoft extends AppCompatActivity {
 
     ArrayList<HashMap<String, String>> pilotesList;
 
-    private static String API_URL="http://10.75.25.40:8080/AerosoftAPI/pilote";
+    private String API_URL="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +40,12 @@ public class PiloteAerosoft extends AppCompatActivity {
 
         pilotesList = new ArrayList<>();
 
+        API_URL="http://"+ getString(R.string.IP_Machine)+"/AerosoftAPI/pilote";
+
         listView = (ListView) findViewById(R.id.listViewPilote);
 
         extractPilotes();
-        Button b1,piloteButton, volButton, avionButton, affectationButton;;
+        Button b1;
         b1 = findViewById(R.id.titleAerosoft);
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,54 +54,6 @@ public class PiloteAerosoft extends AppCompatActivity {
                 Intent i = new Intent(getApplicationContext(),HomeAerosoft.class);
                 startActivity(i);
             }
-        });
-        piloteButton = (Button) findViewById(R.id.piloteButton);
-        volButton = (Button) findViewById(R.id.volButton);
-        avionButton = (Button) findViewById(R.id.avionButton);
-        affectationButton = (Button) findViewById(R.id.affectationButton);
-
-        piloteButton.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(getApplicationContext(), PiloteAerosoft.class);
-                startActivity(intent);
-            }
-
-        });
-
-        volButton.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(getApplicationContext(), VolAerosoft.class);
-                startActivity(intent);
-            }
-
-        });
-
-        avionButton.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(getApplicationContext(), AvionAerosoft.class);
-                startActivity(intent);
-            }
-
-        });
-
-        affectationButton.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(getApplicationContext(), AffectationAerosoft.class);
-                startActivity(intent);
-            }
-
         });
     }
 
