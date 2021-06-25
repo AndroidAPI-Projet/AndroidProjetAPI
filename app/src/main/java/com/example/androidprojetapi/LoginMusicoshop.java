@@ -3,8 +3,11 @@ package com.example.androidprojetapi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.content.res.Resources;
+import android.icu.lang.UProperty;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,12 +28,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 public class LoginMusicoshop extends AppCompatActivity {
 
@@ -48,6 +55,9 @@ public class LoginMusicoshop extends AppCompatActivity {
 
     private SessionManager session;
 
+    private PropertyReader propertyReader;
+    private Properties properties;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +71,10 @@ public class LoginMusicoshop extends AppCompatActivity {
 
         user = new Utilisateur();
 
-        API_URL="http://"+ getString(R.string.IP_Machine)+"/MusicoshopAPI/api/utilisateur/login2.php?";
+        propertyReader = new PropertyReader(this);
+        properties = propertyReader.getMyProperties("app.properties");
+
+        API_URL="http://"+ properties.getProperty("IP_Machine")+"/MusicoshopAPI/api/utilisateur/login2.php?";
 
         btnLoginMusicoshop.setOnClickListener(new View.OnClickListener(){
 
