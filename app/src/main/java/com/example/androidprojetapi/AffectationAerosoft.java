@@ -31,7 +31,7 @@ public class AffectationAerosoft extends AppCompatActivity {
 
     ArrayList<HashMap<String, String>> affectationsList;
 
-    private static String API_URL="http://192.168.1.42/apache/AerosoftAPI/affectation";
+    private static String API_URL="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +104,8 @@ public class AffectationAerosoft extends AppCompatActivity {
     }
 
     private void extractAffectations() {
+
+        API_URL = "http://"+ getString(R.string.IP_Machine)+"/AerosoftAPI/affectation";
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, API_URL,
                 new Response.Listener<String>() {

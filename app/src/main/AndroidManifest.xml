@@ -22,6 +22,7 @@
         <activity android:name=".LoginMusicoshop" />
         <activity android:name=".LoginAerosoft" />
         <activity android:name=".HomeAerosoft" />
+        <activity android:name=".SingleVolAerosoft" />
 
         <uses-library
             android:name="org.apache.http.legacy"

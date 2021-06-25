@@ -35,7 +35,7 @@ public class SingleVolAerosoft extends AppCompatActivity {
         Intent intent = getIntent();
         String NumVol1 = intent.getStringExtra("NumVol");
 
-        String API_URL="http://192.168.1.42/apache/AerosoftAPI/vol/" + NumVol1;
+        String API_URL="http://"+ getString(R.string.IP_Machine)+"/AerosoftAPI/vol/" + NumVol1;
 
         Log.e("URL", API_URL);
 
