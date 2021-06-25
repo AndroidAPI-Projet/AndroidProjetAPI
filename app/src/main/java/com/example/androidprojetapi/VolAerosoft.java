@@ -4,11 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -31,7 +34,7 @@ public class VolAerosoft extends AppCompatActivity {
 
     ArrayList<HashMap<String, String>> volsList;
 
-    private static String API_URL="http://10.75.25.40:8080/AerosoftAPI/vol";
+    private static String API_URL="http://192.168.1.42/apache/AerosoftAPI/vol";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +103,19 @@ public class VolAerosoft extends AppCompatActivity {
                 startActivity(intent);
             }
 
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick (AdapterView<?> parent, View view, int position, long id) {
+
+                TextView NumVol = (TextView) view.findViewById(R.id.NumVol);
+
+                Intent intent = new Intent(getApplicationContext(), SingleVolAerosoft.class);
+                intent.putExtra("NumVol", NumVol.getText());
+                startActivity(intent);
+            }
         });
     }
 

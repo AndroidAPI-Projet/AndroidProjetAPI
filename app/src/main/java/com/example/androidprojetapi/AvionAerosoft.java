@@ -31,7 +31,7 @@ public class AvionAerosoft extends AppCompatActivity {
 
     ArrayList<HashMap<String, String>> avionsList;
 
-    private static String API_URL="http://10.75.25.40:8080/AerosoftAPI/avion";
+    private static String API_URL="http://192.168.1.42/apache/AerosoftAPI/avion";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
