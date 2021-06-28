@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 public class HomeAerosoft extends AppCompatActivity {
 
-    Button piloteButton, volButton, avionButton, affectationButton;
+    Button piloteButton, volButton, avionButton, affectationButton, logoutButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +29,16 @@ public class HomeAerosoft extends AppCompatActivity {
         volButton = (Button) findViewById(R.id.volButton);
         avionButton = (Button) findViewById(R.id.avionButton);
         affectationButton = (Button) findViewById(R.id.affectationButton);
+        logoutButton = (Button) findViewById(R.id.logoutButton);
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent i = new Intent(getApplicationContext(),LoginAerosoft.class);
+                startActivity(i);
+            }
+        });
 
        piloteButton.setOnClickListener(new View.OnClickListener(){
 

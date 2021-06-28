@@ -30,6 +30,8 @@ public class AffectationAerosoft extends AppCompatActivity {
 
     ListView listView;
 
+    Button b1, piloteButton, volButton, avionButton, affectationButton, logoutButton;
+
     ArrayList<HashMap<String, String>> affectationsList;
 
     private static String API_URL="";
@@ -48,8 +50,23 @@ public class AffectationAerosoft extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listViewAffectation);
 
         extractAffectations();
-        Button b1,piloteButton, volButton, avionButton, affectationButton;;
+
         b1 = findViewById(R.id.titleAerosoft);
+        piloteButton = (Button) findViewById(R.id.piloteButton);
+        volButton = (Button) findViewById(R.id.volButton);
+        avionButton = (Button) findViewById(R.id.avionButton);
+        affectationButton = (Button) findViewById(R.id.affectationButton);
+        logoutButton = (Button) findViewById(R.id.logoutButton);
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent i = new Intent(getApplicationContext(),LoginAerosoft.class);
+                startActivity(i);
+            }
+        });
+
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -58,10 +75,6 @@ public class AffectationAerosoft extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        piloteButton = (Button) findViewById(R.id.piloteButton);
-        volButton = (Button) findViewById(R.id.volButton);
-        avionButton = (Button) findViewById(R.id.avionButton);
-        affectationButton = (Button) findViewById(R.id.affectationButton);
 
         piloteButton.setOnClickListener(new View.OnClickListener(){
 

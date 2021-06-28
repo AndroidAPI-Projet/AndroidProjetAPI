@@ -48,6 +48,8 @@ public class VolAerosoft extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vol_aerosoft);
 
+        Button b1, piloteButton, volButton, avionButton, affectationButton, logoutButton;
+
         volsList = new ArrayList<>();
 
         propertyReader = new PropertyReader(this);
@@ -77,8 +79,22 @@ public class VolAerosoft extends AppCompatActivity {
             }
         });
 
-        Button b1, piloteButton, volButton, avionButton, affectationButton;
         b1 = findViewById(R.id.titleAerosoft);
+        piloteButton = (Button) findViewById(R.id.piloteButton);
+        volButton = (Button) findViewById(R.id.volButton);
+        avionButton = (Button) findViewById(R.id.avionButton);
+        affectationButton = (Button) findViewById(R.id.affectationButton);
+        logoutButton = (Button) findViewById(R.id.logoutButton);
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent i = new Intent(getApplicationContext(),LoginAerosoft.class);
+                startActivity(i);
+            }
+        });
+
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -87,10 +103,6 @@ public class VolAerosoft extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        piloteButton = (Button) findViewById(R.id.piloteButton);
-        volButton = (Button) findViewById(R.id.volButton);
-        avionButton = (Button) findViewById(R.id.avionButton);
-        affectationButton = (Button) findViewById(R.id.affectationButton);
 
         piloteButton.setOnClickListener(new View.OnClickListener(){
 

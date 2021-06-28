@@ -25,7 +25,7 @@ public class CreateVolAerosoft extends AppCompatActivity {
 
     EditText SinlgeNumVol, SingleAeroDept, SingleHDept, SingleAeroArr, SingleHArr;
 
-    Button CreateVol;
+    Button b1, piloteButton, volButton, avionButton, affectationButton, logoutButton, CreateVol;
 
     private PropertyReader propertyReader;
 
@@ -37,6 +37,74 @@ public class CreateVolAerosoft extends AppCompatActivity {
         setContentView(R.layout.activity_create_vol_aerosoft);
 
         CreateVol = (Button) findViewById(R.id.CreateVol);
+        b1 = findViewById(R.id.titleAerosoft);
+        piloteButton = (Button) findViewById(R.id.piloteButton);
+        volButton = (Button) findViewById(R.id.volButton);
+        avionButton = (Button) findViewById(R.id.avionButton);
+        affectationButton = (Button) findViewById(R.id.affectationButton);
+        logoutButton = (Button) findViewById(R.id.logoutButton);
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent i = new Intent(getApplicationContext(),LoginAerosoft.class);
+                startActivity(i);
+            }
+        });
+
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent i = new Intent(getApplicationContext(),HomeAerosoft.class);
+                startActivity(i);
+            }
+        });
+
+        piloteButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(), PiloteAerosoft.class);
+                startActivity(intent);
+            }
+
+        });
+
+        volButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(), VolAerosoft.class);
+                startActivity(intent);
+            }
+
+        });
+
+        avionButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(), AvionAerosoft.class);
+                startActivity(intent);
+            }
+
+        });
+
+        affectationButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(), AffectationAerosoft.class);
+                startActivity(intent);
+            }
+
+        });
 
         CreateVol.setOnClickListener(new View.OnClickListener(){
 
