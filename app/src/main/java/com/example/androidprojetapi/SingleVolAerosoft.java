@@ -2,6 +2,8 @@ package com.example.androidprojetapi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -47,6 +49,8 @@ public class SingleVolAerosoft extends AppCompatActivity {
         SingleVolEdit = (Button) findViewById(R.id.SingleVolEdit);
         SingleVolDelete = (Button) findViewById(R.id.SingleVolDelete);
 
+        SinlgeNumVol = (EditText) findViewById(R.id.SingleNumVol);
+
         SingleVolEdit.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -61,8 +65,16 @@ public class SingleVolAerosoft extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-
-                deleteVol();
+                new AlertDialog.Builder(SingleVolAerosoft.this)
+                    .setMessage("Êtes vous sur de vouloir supprimer le vol " + SinlgeNumVol.getText().toString() +" ?")
+                    .setCancelable(false)
+                    .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            deleteVol();
+                        }
+                    })
+                .setNegativeButton("Non", null)
+                .show();
             }
 
         });
@@ -148,14 +160,15 @@ public class SingleVolAerosoft extends AppCompatActivity {
             jsonBody.put("AeroportArr", SingleAeroArr.getText().toString());
             jsonBody.put("HArrivee", SingleHArr.getText().toString());
 
-            String requestBody = jsonBody.toString();
-
             JsonObjectRequest stringRequest = new JsonObjectRequest (Request.Method.POST, API_URL, jsonBody, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
                     try {
                         String message = response.getString("message");
-                        Toast.makeText(SingleVolAerosoft.this, message, Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(SingleVolAerosoft.this, VolAerosoft.class);
+                        intent.putExtra("message", message);
+                        startActivity(intent);
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -182,57 +195,46 @@ public class SingleVolAerosoft extends AppCompatActivity {
     private void deleteVol() {
 
         SinlgeNumVol = (EditText) findViewById(R.id.SingleNumVol);
-        SingleAeroDept = (EditText) findViewById(R.id.SingleAeroDept);
-        SingleHDept = (EditText) findViewById(R.id.SingleHDept);
-        SingleAeroArr = (EditText) findViewById(R.id.SingleAeroArr);
-        SingleHArr = (EditText) findViewById(R.id.SingleHArr);
 
-        Intent intent = getIntent();
-        String NumVol1 = intent.getStringExtra("NumVol");
+        try {
+            propertyReader = new PropertyReader(this);
+            properties = propertyReader.getMyProperties("app.properties");
 
-        propertyReader = new PropertyReader(this);
-        properties = propertyReader.getMyProperties("app.properties");
+            RequestQueue requestQueue = Volley.newRequestQueue(this);
+            String API_URL="http://"+ properties.getProperty("IP_Machine") +"/AerosoftAPI/vol/delete";
+            JSONObject jsonBody = new JSONObject();
 
-        String API_URL="http://"+ properties.getProperty("IP_Machine") +"/AerosoftAPI/vol/delete";
+            jsonBody.put("NumVol", SinlgeNumVol.getText().toString());
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, API_URL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
+            JsonObjectRequest stringRequest = new JsonObjectRequest (Request.Method.POST, API_URL, jsonBody, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    try {
+                        String message = response.getString("message");
+                        Intent intent = new Intent(SingleVolAerosoft.this, VolAerosoft.class);
+                        intent.putExtra("message", message);
+                        startActivity(intent);
 
-                        try {
-                            JSONObject obj = new JSONObject(response);
-
-                            JSONObject volArray = obj.getJSONObject("SingleVol");
-
-                            String NumVol = volArray.getString("NumVol");
-                            String AeroportDept = volArray.getString("AeroportDept");
-                            String HDepart = volArray.getString("HDepart");
-                            String AeroportArr = volArray.getString("AeroportArr");
-                            String HArrivee = volArray.getString("HArrivee");
-
-                            SinlgeNumVol.setText(NumVol);
-                            SingleAeroDept.setText(AeroportDept);
-                            SingleHDept.setText(HDepart);
-                            SingleAeroArr.setText(AeroportArr);
-                            SingleHArr.setText(HArrivee);
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.e("VOLLEY", error.toString());
+                }
+            }) {
+                @Override
+                public String getBodyContentType() {
+                    return "application/json; charset=utf-8";
+                }
+            };
 
-                    }
-                });
-
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-
-        requestQueue.add(stringRequest);
+            requestQueue.add(stringRequest);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
     }
 }

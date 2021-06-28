@@ -55,7 +55,16 @@ public class VolAerosoft extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listViewVol);
 
         extractVols();
-        Button b1,piloteButton, volButton, avionButton, affectationButton;;
+
+        Intent intent = getIntent();
+
+        String message = intent.getStringExtra("message");
+
+        if(message != null) {
+            Toast.makeText(VolAerosoft.this, message, Toast.LENGTH_LONG).show();
+        }
+
+        Button b1, piloteButton, volButton, avionButton, affectationButton;
         b1 = findViewById(R.id.titleAerosoft);
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
