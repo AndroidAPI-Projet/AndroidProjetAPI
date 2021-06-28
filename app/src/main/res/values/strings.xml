@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AndroidProjetAPI</string>
-    <string name="IP_Machine">192.168.1.42/apache</string>
 </resources>

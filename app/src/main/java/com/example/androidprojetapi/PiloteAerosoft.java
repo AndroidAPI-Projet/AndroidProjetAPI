@@ -24,6 +24,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Properties;
 
 public class PiloteAerosoft extends AppCompatActivity {
 
@@ -33,6 +34,10 @@ public class PiloteAerosoft extends AppCompatActivity {
 
     private String API_URL="";
 
+    private PropertyReader propertyReader;
+
+    private Properties properties;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +45,10 @@ public class PiloteAerosoft extends AppCompatActivity {
 
         pilotesList = new ArrayList<>();
 
-        API_URL="http://"+ getString(R.string.IP_Machine)+"/AerosoftAPI/pilote";
+        propertyReader = new PropertyReader(this);
+        properties = propertyReader.getMyProperties("app.properties");
+
+        API_URL="http://"+ properties.getProperty("IP_Machine") +"/AerosoftAPI/pilote";
 
         listView = (ListView) findViewById(R.id.listViewPilote);
 

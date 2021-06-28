@@ -24,6 +24,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Properties;
 
 public class AffectationAerosoft extends AppCompatActivity {
 
@@ -32,6 +33,10 @@ public class AffectationAerosoft extends AppCompatActivity {
     ArrayList<HashMap<String, String>> affectationsList;
 
     private static String API_URL="";
+
+    private PropertyReader propertyReader;
+
+    private Properties properties;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,7 +110,10 @@ public class AffectationAerosoft extends AppCompatActivity {
 
     private void extractAffectations() {
 
-        API_URL = "http://"+ getString(R.string.IP_Machine)+"/AerosoftAPI/affectation";
+        propertyReader = new PropertyReader(this);
+        properties = propertyReader.getMyProperties("app.properties");
+
+        API_URL = "http://"+ properties.getProperty("IP_Machine") +"/AerosoftAPI/affectation";
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, API_URL,
                 new Response.Listener<String>() {

@@ -22,28 +22,40 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Properties;
 
 public class SingleVolAerosoft extends AppCompatActivity {
 
     EditText SinlgeNumVol, SingleAeroDept, SingleHDept, SingleAeroArr, SingleHArr;
+
+    private PropertyReader propertyReader;
+
+    private Properties properties;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_vol_aerosoft);
 
-        Intent intent = getIntent();
-        String NumVol1 = intent.getStringExtra("NumVol");
+        extractSingleVol();
 
-        String API_URL="http://"+ getString(R.string.IP_Machine)+"/AerosoftAPI/vol/" + NumVol1;
+    }
 
-        Log.e("URL", API_URL);
+    private void extractSingleVol() {
 
         SinlgeNumVol = (EditText) findViewById(R.id.SingleNumVol);
         SingleAeroDept = (EditText) findViewById(R.id.SingleAeroDept);
         SingleHDept = (EditText) findViewById(R.id.SingleHDept);
         SingleAeroArr = (EditText) findViewById(R.id.SingleAeroArr);
         SingleHArr = (EditText) findViewById(R.id.SingleHArr);
+
+        Intent intent = getIntent();
+        String NumVol1 = intent.getStringExtra("NumVol");
+
+        propertyReader = new PropertyReader(this);
+        properties = propertyReader.getMyProperties("app.properties");
+
+        String API_URL="http://"+ properties.getProperty("IP_Machine") +"/AerosoftAPI/vol/" + NumVol1;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, API_URL,
                 new Response.Listener<String>() {
@@ -55,17 +67,17 @@ public class SingleVolAerosoft extends AppCompatActivity {
 
                             JSONObject volArray = obj.getJSONObject("SingleVol");
 
-                                String NumVol = volArray.getString("NumVol");
-                                String AeroportDept = volArray.getString("AeroportDept");
-                                String HDepart = volArray.getString("HDepart");
-                                String AeroportArr = volArray.getString("AeroportArr");
-                                String HArrivee = volArray.getString("HArrivee");
+                            String NumVol = volArray.getString("NumVol");
+                            String AeroportDept = volArray.getString("AeroportDept");
+                            String HDepart = volArray.getString("HDepart");
+                            String AeroportArr = volArray.getString("AeroportArr");
+                            String HArrivee = volArray.getString("HArrivee");
 
-                                SinlgeNumVol.setText(NumVol);
-                                SingleAeroDept.setText(AeroportDept);
-                                SingleHDept.setText(HDepart);
-                                SingleAeroArr.setText(AeroportArr);
-                                SingleHArr.setText(HArrivee);
+                            SinlgeNumVol.setText(NumVol);
+                            SingleAeroDept.setText(AeroportDept);
+                            SingleHDept.setText(HDepart);
+                            SingleAeroArr.setText(AeroportArr);
+                            SingleHArr.setText(HArrivee);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -83,12 +95,6 @@ public class SingleVolAerosoft extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
         requestQueue.add(stringRequest);
-
-    }
-
-    private void extractSingleVol() {
-
-
 
     }
 }
