@@ -19,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,6 +34,8 @@ public class VolAerosoft extends AppCompatActivity {
     ListView listView;
 
     ArrayList<HashMap<String, String>> volsList;
+
+    FloatingActionButton fab;
 
     private String API_URL="";
 
@@ -54,6 +57,8 @@ public class VolAerosoft extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.listViewVol);
 
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
         extractVols();
 
         Intent intent = getIntent();
@@ -63,6 +68,14 @@ public class VolAerosoft extends AppCompatActivity {
         if(message != null) {
             Toast.makeText(VolAerosoft.this, message, Toast.LENGTH_LONG).show();
         }
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(VolAerosoft.this, CreateVolAerosoft.class);
+                startActivity(intent);
+            }
+        });
 
         Button b1, piloteButton, volButton, avionButton, affectationButton;
         b1 = findViewById(R.id.titleAerosoft);

@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-
 <LinearLayout
-    android:id="@+id/LinearVolAerosoft"
+    android:id="@+id/LinearCreateVolAerosoft"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:padding="10dip"
-    android:orientation="vertical">
+    android:orientation="vertical" >
 
     <Button
         android:id="@+id/titleAerosoft"
@@ -44,7 +39,7 @@
         android:orientation="horizontal"
         android:paddingRight="10dip"
         android:paddingLeft="10dip"
-        android:layout_below="@+id/LinearVolAerosoft">
+        android:layout_below="@+id/LinearCreateVolAerosoft">
 
         <Button
             android:id="@+id/piloteButton"
@@ -108,80 +103,44 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <EditText
+        android:id="@+id/SingleNumVol"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/SingleAeroDept"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/SingleHDept"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/SingleAeroArr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/SingleHArr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:orientation="horizontal"
-        android:paddingBottom="12dp"
-        android:paddingTop="12dp"
-        android:divider="?android:dividerHorizontal"
-        android:weightSum="4">
+        android:gravity="center_horizontal"
+        android:paddingTop="10dip">
 
-        <TextView
-            android:id="@+id/HeaderDeptAerosoft"
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/CreateVol"
+            android:layout_width="120dip"
             android:layout_height="wrap_content"
-            android:text="Aeroport de départ"
-            android:textAlignment="center"
-            android:textColor="#000"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_weight="1" />
-
-        <TextView
-            android:id="@+id/HeaderHDeptAerosoft"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Heure d'arrivée"
-            android:textAlignment="center"
-            android:textColor="#000"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_weight="1" />
-
-        <TextView
-            android:id="@+id/HeaderArrAerosoft"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Aéropport d'arrivée"
-            android:textAlignment="center"
-            android:textColor="#000"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_weight="1" />
-
-        <TextView
-            android:id="@+id/HeaderHArrAerosoft"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Heure d'arrivée"
-            android:textAlignment="center"
-            android:textColor="#000"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_weight="1" />
+            android:text="Ajouter" />
 
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray"/>
-
-    <ListView
-        android:id="@+id/listViewVol"
-        android:background="#FAFAFA"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/logoutButton" />
-
 </LinearLayout>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:src="@drawable/icon_plus"
-        android:layout_margin="16dp" />
-</FrameLayout>
