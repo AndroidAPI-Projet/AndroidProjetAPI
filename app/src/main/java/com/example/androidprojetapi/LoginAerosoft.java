@@ -2,7 +2,9 @@ package com.example.androidprojetapi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -32,10 +34,14 @@ public class LoginAerosoft extends AppCompatActivity {
 
     private Properties properties;
 
+    private SharedPreferences pref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_aerosoft);
+
+        pref = getSharedPreferences("SessionLogin", Context.MODE_PRIVATE);
 
         btnRegisterAerosoft = (Button) findViewById(R.id.btnRegisterAerosoft);
         btnLoginAerosoft = (Button) findViewById(R.id.btnLoginAerosoft);
@@ -84,9 +90,30 @@ public class LoginAerosoft extends AppCompatActivity {
                 public void onResponse(JSONObject response) {
                     try {
                         String message = response.getString("message");
-                        Intent intent = new Intent(LoginAerosoft.this, HomeAerosoft.class);
-                        intent.putExtra("message", message);
-                        startActivity(intent);
+
+                        if(message.equals("Mot de passe ou login erroné")) {
+                            Toast.makeText(LoginAerosoft.this, message, Toast.LENGTH_SHORT).show();
+                        } else {
+                            String IdUtilisateur = response.getString("IdUtilisateur");
+                            String Mail = response.getString("Mail");
+                            String MotDePasse = response.getString("MotDePasse");
+                            String Statut = response.getString("Statut");
+                            String IdRole = response.getString("IdRole");
+
+                            Intent intent = new Intent(LoginAerosoft.this, HomeAerosoft.class);
+                            intent.putExtra("message", message);
+
+                            SharedPreferences.Editor editor = pref.edit();
+                            editor.putString("IdUtilisateur", IdUtilisateur);
+                            editor.putString("Mail", Mail);
+                            editor.putString("MotDePasse", MotDePasse);
+                            editor.putString("Mail", Mail);
+                            editor.putString("Statut", Statut);
+                            editor.putString("IdRole", IdRole);
+                            editor.commit();
+
+                            startActivity(intent);
+                        }
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -95,7 +122,7 @@ public class LoginAerosoft extends AppCompatActivity {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(getApplicationContext(), "Mot de passe ou login erroné", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }) {
                 @Override

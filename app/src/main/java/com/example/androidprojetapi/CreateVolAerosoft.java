@@ -2,7 +2,9 @@ package com.example.androidprojetapi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -31,10 +33,14 @@ public class CreateVolAerosoft extends AppCompatActivity {
 
     private Properties properties;
 
+    private SharedPreferences pref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_vol_aerosoft);
+
+        pref = getSharedPreferences("SessionLogin", Context.MODE_PRIVATE);
 
         CreateVol = (Button) findViewById(R.id.CreateVol);
         b1 = findViewById(R.id.titleAerosoft);
@@ -48,6 +54,10 @@ public class CreateVolAerosoft extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+                SharedPreferences.Editor editor = pref.edit();
+                editor.clear();
+                editor.commit();
+
                 Intent i = new Intent(getApplicationContext(),LoginAerosoft.class);
                 startActivity(i);
             }

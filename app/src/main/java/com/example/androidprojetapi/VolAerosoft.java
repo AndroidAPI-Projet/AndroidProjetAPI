@@ -2,7 +2,9 @@ package com.example.androidprojetapi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -37,18 +39,22 @@ public class VolAerosoft extends AppCompatActivity {
 
     FloatingActionButton fab;
 
+    Button b1, piloteButton, volButton, avionButton, affectationButton, logoutButton;
+
     private String API_URL="";
 
     private PropertyReader propertyReader;
 
     private Properties properties;
 
+    private SharedPreferences pref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vol_aerosoft);
 
-        Button b1, piloteButton, volButton, avionButton, affectationButton, logoutButton;
+        pref = getSharedPreferences("SessionLogin", Context.MODE_PRIVATE);
 
         volsList = new ArrayList<>();
 
@@ -59,7 +65,9 @@ public class VolAerosoft extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.listViewVol);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+
+        Integer IdRole = Integer.parseInt(pref.getString("IdRole", null));
 
         extractVols();
 
@@ -71,13 +79,17 @@ public class VolAerosoft extends AppCompatActivity {
             Toast.makeText(VolAerosoft.this, message, Toast.LENGTH_LONG).show();
         }
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(VolAerosoft.this, CreateVolAerosoft.class);
-                startActivity(intent);
-            }
-        });
+        if(IdRole == 55555) {
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(VolAerosoft.this, CreateVolAerosoft.class);
+                    startActivity(intent);
+                }
+            });
+        } else {
+            fab.hide();
+        }
 
         b1 = findViewById(R.id.titleAerosoft);
         piloteButton = (Button) findViewById(R.id.piloteButton);
@@ -90,6 +102,10 @@ public class VolAerosoft extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+                SharedPreferences.Editor editor = pref.edit();
+                editor.clear();
+                editor.commit();
+
                 Intent i = new Intent(getApplicationContext(),LoginAerosoft.class);
                 startActivity(i);
             }
@@ -148,18 +164,20 @@ public class VolAerosoft extends AppCompatActivity {
 
         });
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        if(IdRole == 55555) {
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-            @Override
-            public void onItemClick (AdapterView<?> parent, View view, int position, long id) {
+                @Override
+                public void onItemClick (AdapterView<?> parent, View view, int position, long id) {
 
-                TextView NumVol = (TextView) view.findViewById(R.id.NumVol);
+                    TextView NumVol = (TextView) view.findViewById(R.id.NumVol);
 
-                Intent intent = new Intent(getApplicationContext(), SingleVolAerosoft.class);
-                intent.putExtra("NumVol", NumVol.getText());
-                startActivity(intent);
-            }
-        });
+                    Intent intent = new Intent(getApplicationContext(), SingleVolAerosoft.class);
+                    intent.putExtra("NumVol", NumVol.getText());
+                    startActivity(intent);
+                }
+            });
+        }
     }
 
     private void extractVols() {

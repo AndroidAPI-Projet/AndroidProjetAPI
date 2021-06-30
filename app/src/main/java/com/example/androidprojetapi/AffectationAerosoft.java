@@ -2,7 +2,9 @@ package com.example.androidprojetapi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -34,6 +36,8 @@ public class AffectationAerosoft extends AppCompatActivity {
 
     ArrayList<HashMap<String, String>> affectationsList;
 
+    private SharedPreferences pref;
+
     private static String API_URL="";
 
     private PropertyReader propertyReader;
@@ -44,6 +48,8 @@ public class AffectationAerosoft extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_affectation_aerosoft);
+
+        pref = getSharedPreferences("SessionLogin", Context.MODE_PRIVATE);
 
         affectationsList = new ArrayList<>();
 
@@ -62,6 +68,10 @@ public class AffectationAerosoft extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+                SharedPreferences.Editor editor = pref.edit();
+                editor.clear();
+                editor.commit();
+
                 Intent i = new Intent(getApplicationContext(),LoginAerosoft.class);
                 startActivity(i);
             }
