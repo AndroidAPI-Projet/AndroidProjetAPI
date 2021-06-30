@@ -13,12 +13,10 @@
         android:textSize="30sp"
         android:text="Login Aerosoft"
         android:textStyle="bold"
-        android:layout_marginBottom="8dip"
-
-        />
+        android:layout_marginBottom="8dip" />
 
     <TextView
-        android:id="@+id/lblNameAerosoft"
+        android:id="@+id/lblMailAerosoft"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/lblTitreAerosoft"
@@ -26,90 +24,69 @@
         android:layout_marginTop="40dp"
 
         android:layout_marginBottom="8dip"
-        android:text="Prénom :"
+        android:text="Mail :"
         android:textSize="20sp"
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/txtNameAerosoft"
+        android:id="@+id/txtMailAerosoft"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lblNameAerosoft"
+        android:layout_below="@+id/lblMailAerosoft"
         android:layout_marginTop="-2dp"
         android:layout_marginBottom="8dip"
         android:textSize="12sp" />
 
     <TextView
-        android:id="@+id/lblLastnameAerosoft"
+        android:id="@+id/lblMotDePasseAerosoft"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtNameAerosoft"
+        android:layout_below="@+id/txtMailAerosoft"
         android:layout_margin="10dp"
         android:layout_marginTop="40dp"
 
         android:layout_marginBottom="8dip"
-        android:text="Nom:"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/txtLastnameAerosoft"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lblLastnameAerosoft"
-        android:layout_marginTop="-2dp"
-        android:layout_marginBottom="8dip"
-        android:textSize="12sp" />
-
-    <TextView
-        android:id="@+id/lblUsernameAerosoft"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txtLastnameAerosoft"
-        android:layout_margin="10dp"
-        android:layout_marginTop="40dp"
-
-        android:layout_marginBottom="8dip"
-        android:text="Nom d'utilisateur:"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/txtUsernameAerosoft"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/lblUsernameAerosoft"
-        android:layout_marginTop="-2dp"
-        android:layout_marginBottom="8dip"
-        android:textSize="12sp" />
-
-    <TextView
-        android:id="@+id/lblPasswordAerosoft"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txtUsernameAerosoft"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="8dip"
-        android:layout_margin="10dp"
         android:text="Mot de passe:"
         android:textSize="20sp"
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/txtPasswordAerosoft"
+        android:id="@+id/txtMotDePasseAerosoft"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/lblPasswordAerosoft"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="8dip"
+        android:layout_below="@+id/lblMotDePasseAerosoft"
         android:password="true"
+        android:layout_marginTop="-2dp"
+        android:layout_marginBottom="8dip"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/lblRoleAerosoft"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtMotDePasseAerosoft"
+        android:layout_margin="10dp"
+        android:layout_marginTop="40dp"
+
+        android:layout_marginBottom="8dip"
+        android:text="Role:"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/txtRoleAerosoft"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lblRoleAerosoft"
+        android:layout_marginTop="-2dp"
+        android:layout_marginBottom="8dip"
         android:textSize="12sp" />
 
     <Button
         android:id="@+id/btnConfirmRegisterAerosoft"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txtPasswordAerosoft"
+        android:layout_below="@id/txtRoleAerosoft"
         android:layout_marginTop="40dp"
         android:layout_marginBottom="2dip"
         android:text="Confirmer son profil" />

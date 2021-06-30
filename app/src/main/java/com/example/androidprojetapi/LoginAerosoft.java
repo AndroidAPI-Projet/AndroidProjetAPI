@@ -46,6 +46,14 @@ public class LoginAerosoft extends AppCompatActivity {
         btnRegisterAerosoft = (Button) findViewById(R.id.btnRegisterAerosoft);
         btnLoginAerosoft = (Button) findViewById(R.id.btnLoginAerosoft);
 
+        Intent intent = getIntent();
+
+        String message = intent.getStringExtra("message");
+
+        if(message != null) {
+            Toast.makeText(LoginAerosoft.this, message, Toast.LENGTH_LONG).show();
+        }
+
         btnRegisterAerosoft.setOnClickListener(new View.OnClickListener(){
 
             @Override
