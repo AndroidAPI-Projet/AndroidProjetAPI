@@ -106,7 +106,7 @@ public class RegisterAerosoft extends AppCompatActivity {
                                         (RegisterAerosoft.this, android.R.layout.simple_spinner_item,rolesList);
 
                                 dataAdapter.setDropDownViewResource
-                                        (android.R.layout.simple_spinner_item);
+                                        (android.R.layout.simple_spinner_dropdown_item);
 
                                 SpinnerRole.setAdapter(dataAdapter);
 

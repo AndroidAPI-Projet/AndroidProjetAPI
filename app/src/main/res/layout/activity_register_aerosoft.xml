@@ -22,7 +22,6 @@
         android:layout_below="@+id/lblTitreAerosoft"
         android:layout_margin="10dp"
         android:layout_marginTop="40dp"
-
         android:layout_marginBottom="8dip"
         android:text="Mail :"
         android:textSize="20sp"
@@ -44,7 +43,6 @@
         android:layout_below="@+id/txtMailAerosoft"
         android:layout_margin="10dp"
         android:layout_marginTop="40dp"
-
         android:layout_marginBottom="8dip"
         android:text="Mot de passe:"
         android:textSize="20sp"
@@ -67,7 +65,6 @@
         android:layout_below="@+id/txtMotDePasseAerosoft"
         android:layout_margin="10dp"
         android:layout_marginTop="40dp"
-
         android:layout_marginBottom="8dip"
         android:text="Role:"
         android:textSize="20sp"

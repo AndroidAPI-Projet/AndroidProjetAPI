@@ -247,7 +247,7 @@ public class CreateVolAerosoft extends AppCompatActivity {
                                         (CreateVolAerosoft.this, android.R.layout.simple_spinner_item,aeroportList);
 
                                 dataAdapter.setDropDownViewResource
-                                        (android.R.layout.simple_spinner_item);
+                                        (android.R.layout.simple_spinner_dropdown_item);
 
                                 SingleSpinnerAeroportDept.setAdapter(dataAdapter);
                                 SingleSpinnerAeroportArr.setAdapter(dataAdapter);
