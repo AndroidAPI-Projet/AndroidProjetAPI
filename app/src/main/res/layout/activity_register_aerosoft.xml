@@ -73,10 +73,11 @@
         android:textSize="20sp"
         android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/txtRoleAerosoft"
-        android:layout_width="fill_parent"
+    <Spinner
+        android:id="@+id/SpinnerRole"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:spinnerMode="dialog"
         android:layout_below="@id/lblRoleAerosoft"
         android:layout_marginTop="-2dp"
         android:layout_marginBottom="8dip"
@@ -86,7 +87,7 @@
         android:id="@+id/btnConfirmRegisterAerosoft"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txtRoleAerosoft"
+        android:layout_below="@id/SpinnerRole"
         android:layout_marginTop="40dp"
         android:layout_marginBottom="2dip"
         android:text="Confirmer son profil" />
