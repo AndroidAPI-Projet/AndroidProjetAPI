@@ -11,10 +11,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.SimpleAdapter;
+import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -30,15 +32,21 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Properties;
 
 public class SingleVolAerosoft extends AppCompatActivity {
 
-    EditText SinlgeNumVol, SingleAeroDept, SingleHDept, SingleAeroArr, SingleHArr;
+    EditText SinlgeNumVol, SingleHDept, SingleHArr;
 
     Button b1, piloteButton, volButton, avionButton, affectationButton, logoutButton, SingleVolEdit, SingleVolDelete;
+
+    Spinner SpinnerAeroportDept, SpinnerAeroportArr;
+
+    List<String> aeroportList = new ArrayList<String>();
 
     private PropertyReader propertyReader;
 
@@ -52,6 +60,8 @@ public class SingleVolAerosoft extends AppCompatActivity {
         setContentView(R.layout.activity_single_vol_aerosoft);
 
         pref = getSharedPreferences("SessionLogin", Context.MODE_PRIVATE);
+
+        extractAeroport();
 
         extractSingleVol();
 
@@ -235,12 +245,70 @@ public class SingleVolAerosoft extends AppCompatActivity {
 
     }
 
+    private void extractAeroport() {
+
+        SpinnerAeroportDept = (Spinner) findViewById(R.id.SpinnerAeroportDept);
+        SpinnerAeroportArr = (Spinner) findViewById(R.id.SpinnerAeroportArr);
+
+        Intent intent = getIntent();
+
+        propertyReader = new PropertyReader(this);
+        properties = propertyReader.getMyProperties("app.properties");
+
+        String API_URL="http://"+ properties.getProperty("IP_Machine") +"/AerosoftAPI/aeroport";
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, API_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        try {
+                            JSONObject obj = new JSONObject(response);
+
+                            JSONArray aeroportArray = obj.getJSONArray("Aeroports");
+                            for (int i = 0; i < aeroportArray.length(); i++) {
+                                JSONObject aeroportObject = aeroportArray.getJSONObject(i);
+
+                                String AeroportDept = aeroportObject.getString("IdAeroport");
+
+                                aeroportList.add(AeroportDept);
+
+                                ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>
+                                        (SingleVolAerosoft.this, android.R.layout.simple_spinner_item,aeroportList);
+
+                                dataAdapter.setDropDownViewResource
+                                        (android.R.layout.simple_spinner_item);
+
+                                SpinnerAeroportDept.setAdapter(dataAdapter);
+                                SpinnerAeroportArr.setAdapter(dataAdapter);
+
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        requestQueue.add(stringRequest);
+
+    }
+
     private void extractSingleVol() {
 
         SinlgeNumVol = (EditText) findViewById(R.id.SingleNumVol);
-        SingleAeroDept = (EditText) findViewById(R.id.SingleAeroDept);
+        SpinnerAeroportDept = (Spinner) findViewById(R.id.SpinnerAeroportDept);
         SingleHDept = (EditText) findViewById(R.id.SingleHDept);
-        SingleAeroArr = (EditText) findViewById(R.id.SingleAeroArr);
+        SpinnerAeroportArr = (Spinner) findViewById(R.id.SpinnerAeroportArr);
         SingleHArr = (EditText) findViewById(R.id.SingleHArr);
 
         Intent intent = getIntent();
@@ -267,10 +335,13 @@ public class SingleVolAerosoft extends AppCompatActivity {
                             String AeroportArr = volArray.getString("AeroportArr");
                             String HArrivee = volArray.getString("HArrivee");
 
+                            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>
+                                    (SingleVolAerosoft.this, android.R.layout.simple_spinner_item,aeroportList);
+
                             SinlgeNumVol.setText(NumVol);
-                            SingleAeroDept.setText(AeroportDept);
+                            SpinnerAeroportDept.setSelection(dataAdapter.getPosition(AeroportDept));
                             SingleHDept.setText(HDepart);
-                            SingleAeroArr.setText(AeroportArr);
+                            SpinnerAeroportArr.setSelection(dataAdapter.getPosition(AeroportArr));
                             SingleHArr.setText(HArrivee);
 
                         } catch (JSONException e) {
@@ -295,9 +366,9 @@ public class SingleVolAerosoft extends AppCompatActivity {
     private void editVol() {
 
         SinlgeNumVol = (EditText) findViewById(R.id.SingleNumVol);
-        SingleAeroDept = (EditText) findViewById(R.id.SingleAeroDept);
+        SpinnerAeroportDept = (Spinner) findViewById(R.id.SpinnerAeroportDept);
         SingleHDept = (EditText) findViewById(R.id.SingleHDept);
-        SingleAeroArr = (EditText) findViewById(R.id.SingleAeroArr);
+        SpinnerAeroportArr = (Spinner) findViewById(R.id.SpinnerAeroportArr);
         SingleHArr = (EditText) findViewById(R.id.SingleHArr);
 
         try {
@@ -309,9 +380,9 @@ public class SingleVolAerosoft extends AppCompatActivity {
             JSONObject jsonBody = new JSONObject();
 
             jsonBody.put("NumVol", SinlgeNumVol.getText().toString());
-            jsonBody.put("AeroportDept", SingleAeroDept.getText().toString());
+            jsonBody.put("AeroportDept", SpinnerAeroportDept.getSelectedItem().toString());
             jsonBody.put("HDepart", SingleHDept.getText().toString());
-            jsonBody.put("AeroportArr", SingleAeroArr.getText().toString());
+            jsonBody.put("AeroportArr", SpinnerAeroportArr.getSelectedItem().toString());
             jsonBody.put("HArrivee", SingleHArr.getText().toString());
 
             JsonObjectRequest stringRequest = new JsonObjectRequest (Request.Method.POST, API_URL, jsonBody, new Response.Listener<JSONObject>() {

@@ -108,10 +108,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <EditText
-        android:id="@+id/SingleAeroDept"
+
+    <Spinner
+        android:id="@+id/SpinnerAeroportDept"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:spinnerMode="dialog" />
 
     <EditText
         android:id="@+id/SingleHDept"
@@ -119,10 +121,11 @@
         android:layout_height="wrap_content"
         android:focusable="false" />
 
-    <EditText
-        android:id="@+id/SingleAeroArr"
+    <Spinner
+        android:id="@+id/SpinnerAeroportArr"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:spinnerMode="dialog" />
 
     <EditText
         android:id="@+id/SingleHArr"
