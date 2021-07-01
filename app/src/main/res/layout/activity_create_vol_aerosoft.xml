@@ -116,7 +116,8 @@
     <EditText
         android:id="@+id/SingleHDept"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:focusable="false"/>
 
     <EditText
         android:id="@+id/SingleAeroArr"
@@ -126,7 +127,8 @@
     <EditText
         android:id="@+id/SingleHArr"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:focusable="false"/>
 
     <LinearLayout
         android:layout_width="fill_parent"
