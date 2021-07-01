@@ -32,7 +32,7 @@ public class AvionAerosoft extends AppCompatActivity {
 
     ListView listView;
 
-    Button b1, piloteButton, volButton, avionButton, affectationButton, logoutButton;
+    Button b1, piloteButton, volButton, affectationButton, logoutButton;
 
     ArrayList<HashMap<String, String>> avionsList;
 
@@ -65,7 +65,6 @@ public class AvionAerosoft extends AppCompatActivity {
         b1 = findViewById(R.id.titleAerosoft);
         piloteButton = (Button) findViewById(R.id.piloteButton);
         volButton = (Button) findViewById(R.id.volButton);
-        avionButton = (Button) findViewById(R.id.avionButton);
         affectationButton = (Button) findViewById(R.id.affectationButton);
         logoutButton = (Button) findViewById(R.id.logoutButton);
 
@@ -108,17 +107,6 @@ public class AvionAerosoft extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(getApplicationContext(), VolAerosoft.class);
-                startActivity(intent);
-            }
-
-        });
-
-        avionButton.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(getApplicationContext(), AvionAerosoft.class);
                 startActivity(intent);
             }
 

@@ -103,11 +103,35 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/lblSingleNumVol"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="8dip"
+        android:text="Numéro de vol:"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
     <EditText
         android:id="@+id/SingleNumVol"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:paddingLeft="15dp"
+        android:inputType="none"
+        android:enabled="false"/>
 
+    <TextView
+        android:id="@+id/lblSingleAeroportDept"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="8dip"
+        android:text="Aéroport de départ:"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <Spinner
         android:id="@+id/SpinnerAeroportDept"
@@ -115,22 +139,58 @@
         android:layout_height="wrap_content"
         android:spinnerMode="dialog" />
 
+    <TextView
+        android:id="@+id/lblSingleHDept"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="8dip"
+        android:text="Heure de départ:"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
     <EditText
         android:id="@+id/SingleHDept"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="15dp"
         android:focusable="false" />
+
+    <TextView
+        android:id="@+id/lblSingleAeroportArr"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="8dip"
+        android:text="Aéroport d'arrivée:"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <Spinner
         android:id="@+id/SpinnerAeroportArr"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
         android:spinnerMode="dialog" />
+
+    <TextView
+        android:id="@+id/lblSingleHArr"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="8dip"
+        android:text="Heure d'arrivée:"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/SingleHArr"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="15dp"
         android:focusable="false" />
 
     <LinearLayout

@@ -39,7 +39,7 @@ public class VolAerosoft extends AppCompatActivity {
 
     FloatingActionButton fab;
 
-    Button b1, piloteButton, volButton, avionButton, affectationButton, logoutButton;
+    Button b1, piloteButton, avionButton, affectationButton, logoutButton;
 
     private String API_URL="";
 
@@ -93,7 +93,6 @@ public class VolAerosoft extends AppCompatActivity {
 
         b1 = findViewById(R.id.titleAerosoft);
         piloteButton = (Button) findViewById(R.id.piloteButton);
-        volButton = (Button) findViewById(R.id.volButton);
         avionButton = (Button) findViewById(R.id.avionButton);
         affectationButton = (Button) findViewById(R.id.affectationButton);
         logoutButton = (Button) findViewById(R.id.logoutButton);
@@ -126,17 +125,6 @@ public class VolAerosoft extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(getApplicationContext(), PiloteAerosoft.class);
-                startActivity(intent);
-            }
-
-        });
-
-        volButton.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(getApplicationContext(), VolAerosoft.class);
                 startActivity(intent);
             }
 

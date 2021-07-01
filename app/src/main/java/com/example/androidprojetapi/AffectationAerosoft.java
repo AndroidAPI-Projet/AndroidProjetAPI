@@ -32,7 +32,7 @@ public class AffectationAerosoft extends AppCompatActivity {
 
     ListView listView;
 
-    Button b1, piloteButton, volButton, avionButton, affectationButton, logoutButton;
+    Button b1, piloteButton, volButton, avionButton, logoutButton;
 
     ArrayList<HashMap<String, String>> affectationsList;
 
@@ -61,7 +61,6 @@ public class AffectationAerosoft extends AppCompatActivity {
         piloteButton = (Button) findViewById(R.id.piloteButton);
         volButton = (Button) findViewById(R.id.volButton);
         avionButton = (Button) findViewById(R.id.avionButton);
-        affectationButton = (Button) findViewById(R.id.affectationButton);
         logoutButton = (Button) findViewById(R.id.logoutButton);
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
@@ -119,16 +118,6 @@ public class AffectationAerosoft extends AppCompatActivity {
 
         });
 
-        affectationButton.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(getApplicationContext(), AffectationAerosoft.class);
-                startActivity(intent);
-            }
-
-        });
     }
 
     private void extractAffectations() {
