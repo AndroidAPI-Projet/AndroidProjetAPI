@@ -3,6 +3,7 @@ package com.example.androidprojetapi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.SimpleAdapter;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -28,6 +30,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Properties;
 
@@ -63,6 +66,78 @@ public class SingleVolAerosoft extends AppCompatActivity {
         avionButton = (Button) findViewById(R.id.avionButton);
         affectationButton = (Button) findViewById(R.id.affectationButton);
         logoutButton = (Button) findViewById(R.id.logoutButton);
+        SingleHDept = (EditText) findViewById(R.id.SingleHDept);
+        SingleHArr = (EditText) findViewById(R.id.SingleHArr);
+
+        SingleHDept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                final Calendar c = Calendar.getInstance();
+                int Hour = c.get(Calendar.HOUR_OF_DAY);
+                int Minute = c.get(Calendar.MINUTE);
+
+                TimePickerDialog timePickerDialog = new TimePickerDialog(SingleVolAerosoft.this,
+                        new TimePickerDialog.OnTimeSetListener() {
+
+                            @Override
+                            public void onTimeSet(TimePicker view, int hour,
+                                                  int minute) {
+
+                                String hrs, mins;
+
+                                if(minute<10){
+                                    mins = "0"+minute;
+                                }else{
+                                    mins = String.valueOf(minute);
+                                }
+                                if(hour<10){
+                                    hrs = "0"+hour;
+                                }else{
+                                    hrs = String.valueOf(hour);
+                                }
+
+                                SingleHDept.setText(hrs + ":" + mins + ":00");
+                            }
+                        }, Hour, Minute, false);
+                timePickerDialog.show();
+            }
+        });
+
+        SingleHArr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                final Calendar c = Calendar.getInstance();
+                int Hour = c.get(Calendar.HOUR_OF_DAY);
+                int Minute = c.get(Calendar.MINUTE);
+
+                TimePickerDialog timePickerDialog = new TimePickerDialog(SingleVolAerosoft.this,
+                        new TimePickerDialog.OnTimeSetListener() {
+
+                            @Override
+                            public void onTimeSet(TimePicker view, int hour,
+                                                  int minute) {
+
+                                String hrs, mins;
+
+                                if(minute<10){
+                                    mins = "0"+minute;
+                                }else{
+                                    mins = String.valueOf(minute);
+                                }
+                                if(hour<10){
+                                    hrs = "0"+hour;
+                                }else{
+                                    hrs = String.valueOf(hour);
+                                }
+
+                                SingleHArr.setText(hrs + ":" + mins + ":00");
+                            }
+                        }, Hour, Minute, false);
+                timePickerDialog.show();
+            }
+        });
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
